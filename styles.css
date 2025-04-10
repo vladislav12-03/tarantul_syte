@@ -1,0 +1,149 @@
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #1e1e2d;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.menu-btn, .admin-btn {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  font-size: 18px;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.menu-btn:hover, .admin-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-btn {
+  margin-top: auto;
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.content {
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.popup input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.popup button {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+/* Блоки на главной странице */
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.time-block, .news-block {
+  width: 48%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.time-block h3, .news-block h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#current-time, #current-date {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#news-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.news-list li {
+  margin-bottom: 10px;
+}
+
+/* Прокручиваемый список новостей */
+.news-block {
+  max-height: 300px; /* Ограничиваем высоту блока */
+  overflow-y: auto;  /* Добавляем вертикальную прокрутку */
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #1e1e2d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
