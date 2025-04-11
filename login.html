@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <h2>Авторизация</h2>
+    <input type="text" id="login" placeholder="Логин" />
+    <input type="password" id="password" placeholder="Пароль" />
+    <button onclick="login()">Войти</button>
+    <p id="error-message" class="error"></p>
+  </div>
+
+  <script>
+    async function hashCode(input) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(input);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function login() {
+      const login = document.getElementById("login").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorEl = document.getElementById("error-message");
+
+      // ✅ Мастер-аккаунт (всегда доступен для отладки)
+      if (login === "admin" && password === "1234") {
+        localStorage.setItem("loggedInUser", login);
+        window.location.href = "index.html";
+        return;
+      }
+
+      // ✅ Проверка среди добавленных пользователей
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const hash = await hashCode(password);
+      const match = users.find(u => u.username === login && u.passwordHash === hash);
+
+      if (match) {
+        localStorage.setItem("loggedInUser", login);
+        window.location.href = "index.html";
+      } else {
+        errorEl.textContent = "Неверный логин или пароль!";
+      }
+    }
+  </script>
+</body>
+</html>
